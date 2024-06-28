@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: envvarsadminservice
+data:
+
+  SPRING_DATASOURCE_URL: {{ .Values.env.SPRING_DATASOURCE_URL }}
+  SPRING_DATASOURCE_USERNAME: {{ .Values.env.SPRING_DATASOURCE_USERNAME }}
+  SPRING_DATASOURCE_PASSWORD: {{ .Values.env.SPRING_DATASOURCE_PASSWORD }}
+  SPRING_ACTIVEMQ_BROKER_URL: tcp://activemq-helm-chart:61616
+  SPRING_ACTIVEMQ_USER: {{ .Values.env.SPRING_ACTIVEMQ_USER }}
+  SPRING_ACTIVEMQ_PASSWORD: {{ .Values.env.SPRING_ACTIVEMQ_PASSWORD }}
+  SPRING_ACTIVEMQ_TOPIC: PMO
+  SPRING_ACTIVEMQ_QUEUE_EMAIL: emailQueue
+  FRONT_END_BASE_URL: {{ .Values.env.FRONT_END_BASE_URL }}
+  FRONT_END_PATH_SET_PASSWORD: /auth/set-password/
+  FRONT_END_PATH_RESET_PASSWORD: /auth/reset-password/
+  USER_SERVICE_DATABASE_ISMULTITENANCYENABLED: "false"
+  AUTH_SERVICE_URL: http://authservice-helm-chart:8080/auth_service/api/users
+  #KEYCLOAK_REALM: pmooffice
+  KEYCLOAK_AUTH_SERVER_URL: http://keycloak-helm-chart:8080
+  KEYCLOAK_RESOURCE: auth-service
+  KEYCLOAK_CREDENTIALS_SECRET: {{ .Values.env.KEYCLOAK_CREDENTIALS_SECRET }}
+  #ENV_ADMIN_USERNAME: pmo-admin
+  #ENV_ADMIN_PASSWORD: admin
+  SUBSCRIPTION_SERVICE_URL: "http://subscriptionservice-helm-chart:8080/subscription_service/api" 

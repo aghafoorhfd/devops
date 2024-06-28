@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: envvarsprojectsvc
+data:
+  DATASOURCE_CONNECTION_TIMEOUT: "30000"
+  DATASOURCE_IDLE_TIMOUT: "600000"
+  DATASOURCE_MAX_LIFETIME: "1800000"
+  DATABASE_POOL_SIZE: "5"
+  SPRING_DATASOURCE_USERNAME: {{ .Values.env.SPRING_DATASOURCE_USERNAME }}
+  SPRING_DATASOURCE_PASSWORD: {{ .Values.env.SPRING_DATASOURCE_PASSWORD }}
+  SPRING_DATASOURCE_URL: {{ .Values.env.SPRING_DATASOURCE_URL }}
+  MULTI_TENANCY_TENANT_DATASOURCE_HOST: {{ .Values.env.MULTI_TENANCY_TENANT_DATASOURCE_HOST }}
+  MULTI_TENANCY_TENANT_DATASOURCE_PORT: "27019"
+  MONGO_DATASOURCE_USERNAME: {{ .Values.env.MONGO_DATASOURCE_USERNAME }}
+  MONGO_DATASOURCE_PASSWORD: {{ .Values.env.MONGO_DATASOURCE_PASSWORD }}
+  KC_ADMIN_USER: admin
+  KC_ADMIN_PASSWORD: admin
+  METHODOLOGY_INCREMENT_SCHEDULE: 0 0 13 * * ?
+  METHODOLOGY_INCREMENT_SCHEDULE: "0 0 13 * * ?"
+  JVM_ARGS: "-Xms2048m -Xmx4096m"
+  SPRING_ACTIVEMQ_BROKER_URL: tcp://activemq-helm-chart:61616
+  SPRING_ACTIVEMQ_USER: {{ .Values.env.SPRING_ACTIVEMQ_USER }}
+  SPRING_ACTIVEMQ_PASSWORD: {{ .Values.env.SPRING_ACTIVEMQ_PASSWORD }}
+  SPRING_ACTIVEMQ_TOPIC: PMO
+  SPRING_ACTIVEMQ_QUEUE_EMAIL: emailQueue
+  KEYCLOAK_AUTH_SERVER_URL: http://keycloak-helm-chart:8080
+  KEYCLOAK_CREDENTIALS_SECRET: {{ .Values.env.KEYCLOAK_CREDENTIALS_SECRET }}
+  JIRA_REDIRECT_URI: https://uat.pmotracker.com/callback
+  JIRA_AUTHORIZATION_URL: https://auth.atlassian.com/authorize?audience=api.atlassian.com&client_id={0}&scope=offline_access%20read%3Aaudit-log%3Ajira%20read%3Aavatar%3Ajira%20read%3Adashboard%3Ajira%20read%3Adashboard.property%3Ajira%20read%3Afilter%3Ajira%20read%3Aissue%3Ajira%20read%3Aissue-meta%3Ajira%20read%3Acomment%3Ajira%20read%3Afield%3Ajira%20read%3Aissue-link%3Ajira%20read%3Aissue-link-type%3Ajira%20read%3Apriority%3Ajira%20read%3Aresolution%3Ajira%20read%3Aissue-details%3Ajira%20read%3Aproject%3Ajira%20read%3Aproject-category%3Ajira%20read%3Aproject.property%3Ajira%20read%3Ajql%3Ajira%20read%3Afield-configuration%3Ajira%20read%3Aepic%3Ajira-software%20read%3Aproject.feature%3Ajira&redirect_uri={1}&state={2}&response_type=code&prompt=consent
+  JIRA_CLIENT_ID: 2dgX8dAMkydkToAYpGZOJ0m1SQv6UCL1
+  JIRA_CLIENT_SECRET: ATOAYIM0qtSjV4YhWbC4D_B5shb8sbWVnqWm7LxLILlylyfp2L0M3_h24UYWhxQObF9p0AB64995

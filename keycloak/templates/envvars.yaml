@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: envvarskeycloak
+data:
+
+  KEYCLOAK_ADMIN: {{ .Values.env.KEYCLOAK_ADMIN }}
+  KEYCLOAK_ADMIN_PASSWORD: {{ .Values.env.KEYCLOAK_ADMIN_PASSWORD }}
+  KC_DB: mysql
+  KC_DB_URL:  {{ .Values.env.KC_DB_URL }}
+  KC_DB_USERNAME: {{ .Values.env.KC_DB_USERNAME }}
+  KC_DB_PASSWORD: {{ .Values.env.KC_DB_PASSWORD }}

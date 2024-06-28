@@ -1,0 +1,88 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: backends
+  namespace: default
+  annotations:
+    #kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    #nginx.org/rewrites: "serviceName=frontend-helm-chart:rewrite=/"  
+
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: uat.pmotracker.com
+    http:
+      paths:
+
+      - path: /authpath/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: authservice-helm-chart
+            port:
+              number: 8080
+
+      - path: /global/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: globalservice-helm-chart
+            port:
+              number: 8087
+
+      - path: /project/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: projectservice-helm-chart
+            port:
+              number: 8080
+
+
+      - path: /resource/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: resourceservice-helm-chart
+            port:
+              number: 8080
+
+      - path: /subscription/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: subscriptionservice-helm-chart
+            port:
+              number: 8080
+
+      - path: /user/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: userservice-helm-chart
+            port:
+              number: 8080
+
+      - path: /pgw/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: paymentgatewayservice-helm-chart
+            port:
+              number: 8080
+
+      - path: /notification/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: notificationservice-helm-chart
+            port:
+              number: 8086
+
+  tls:
+  - secretName: my-tls-secret
+    hosts:
+    - uat.pmotracker.com
+~                          

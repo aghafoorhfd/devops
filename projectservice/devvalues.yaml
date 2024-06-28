@@ -1,0 +1,62 @@
+# Default values for helm-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: project_service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP # NodePort
+  #exposePort: 30408
+  targetPort: 8083
+  internalPort: 8080
+
+env:
+  SPRING_DATASOURCE_USERNAME: root
+  SPRING_DATASOURCE_PASSWORD: root
+  SPRING_DATASOURCE_URL: jdbc:mysql://mysql-helm-chart:3306/master
+  MULTI_TENANCY_TENANT_DATASOURCE_HOST: mongodb-helm-chart
+  MONGO_DATASOURCE_USERNAME: admin
+  MONGO_DATASOURCE_PASSWORD: admin
+  SPRING_ACTIVEMQ_USER: admin
+  SPRING_ACTIVEMQ_PASSWORD: admin
+  KEYCLOAK_CREDENTIALS_SECRET: 5Iih7Zxd8YM7LbQCB8d02jN7Nji7zUGP
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths: []
+
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

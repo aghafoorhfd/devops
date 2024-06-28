@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: envvarsfrontend-admin
+data:
+  REACT_APP_NODE_ENV: "production"
+ 

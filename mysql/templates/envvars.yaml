@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: envvarsmysql
+data:
+  MYSQL_ROOT_PASSWORD: root
+

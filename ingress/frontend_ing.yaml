@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend
+  namespace: default
+  annotations:
+    #kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    #nginx.ingress.kubernetes.io/rewrite-target: /$1
+    #nginx.org/rewrites: "serviceName=frontend-helm-chart:rewrite=/"  
+
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: uat.pmotracker.com
+    http:
+      paths:
+
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-helm-chart
+            port:
+              number: 80
+
+  tls:
+  - secretName: tls-secret-24-10
+    hosts:
+    - uat.pmotracker.com

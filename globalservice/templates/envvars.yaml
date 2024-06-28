@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: envvarsglobalsvc
+data:
+
+  SPRING_DATASOURCE_URL: {{ .Values.env.SPRING_DATASOURCE_URL }}
+  SPRING_DATASOURCE_USERNAME: {{ .Values.env.SPRING_DATASOURCE_USERNAME }}
+  SPRING_DATASOURCE_PASSWORD: {{ .Values.env.SPRING_DATASOURCE_PASSWORD }}
+  AUTH_SERVICE_URL: http://authservice-helm-chart:8080/auth_service/api/users
+  KEYCLOAK_REALM: pmo-admin-realm
+  KEYCLOAK_AUTH_SERVER_URL: http://keycloak-helm-chart:8080
+  KEYCLOAK_RESOURCE: auth-service
+  KEYCLOAK_CREDENTIALS_SECRET: {{ .Values.env.KEYCLOAK_CREDENTIALS_SECRET }}  
+

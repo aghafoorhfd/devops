@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: envvarsnotificationsvc
+data:
+
+  SPRING_ACTIVEMQ_BROKER_URL: tcp://activemq-helm-chart:61616
+  SPRING_ACTIVEMQ_USER: {{ .Values.env.SPRING_ACTIVEMQ_USER }}
+  SPRING_ACTIVEMQ_PASSWORD: {{ .Values.env.SPRING_ACTIVEMQ_PASSWORD }}  
+  SPRING_ACTIVEMQ_TOPIC: PMO
+  SPRING_ACTIVEMQ_QUEUE_EMAIL: emailQueue
+  MANAGEMENT_HEALTH_MAIL_ENABLED: 'false'  
+  SPRING_MAIL_HOST: smtp.ionos.com
+  SPRING_MAIL_USERNAME: alerts@pmotracker.com
+  SPRING_MAIL_PASSWORD: rnlynuollnmehtbx
+  SPRING_MAIL_FROM_ADDRESS: alerts@pmotracker.com
+#  SPRING_MAIL_HOST: smtp-relay.gmail.com
+#  SPRING_MAIL_USERNAME: pmotracker@pmotracker-389011.iam.gserviceaccount.com
+#  SPRING_MAIL_PASSWORD: file:${HOME}/gmailsmtp.json
+#  SPRING_MAIL_FROM_ADDRESS: uat@pmotracker.com
+
